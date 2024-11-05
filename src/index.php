@@ -1,49 +1,54 @@
 <?php
+$pageFlag = 0;
 
-// forの基本構文
-// break, continueも使える
-
-echo 'forの基本構文';
-echo '<br>';
-for($i = 0; $i < 10; $i++) {
-    echo $i;
-    echo '<br>';
+if(!empty($_POST['conf'])) {
+    $pageFlag = 1;
 }
 
-// whileの基本構文
-echo 'whileの基本構文';
-echo '<br>';
-$i = 0;
-while ($i < 10) {
-    echo $i;
-    echo '<br>';
-    $i++;
+if(!empty($_POST['back'])) {
+    $pageFlag = 0;
 }
 
-//switchの基本構文
-echo 'switchの基本構文';
-echo '<br>';
-$signal = 'green';
-switch ($signal) {
-    case 'red':
-        echo 'stop';
-        break;
-    case 'blue':
-    case 'green':
-        echo 'go';
-        break;
-    case 'yellow':
-        echo 'caution';
-        break;
-    default:
-        echo 'wrong signal';
-        break;
+if(!empty($_POST['submit'])) {
+    $pageFlag = 2;
 }
 
-/* switchの注意点
-    ・breakを書き忘れると、次のcaseも実行される
-    ・デフォルトでは比較演算子が==なので、型の比較も行いたい場合は、===を使う
-    ・上記のことから複雑になりがちなので、基本的にif文を使う
-*/
+echo $pageFlag;
+echo '<br>';
+var_dump($_POST);
 
 ?>
+
+<DOCTYPE>
+    <html>
+        <head>
+        <title>My First PHP Page</title>
+        </head>
+        <body>
+
+        <?php if($pageFlag === 0) : ?>
+        <form method="POST" action="index.php">
+            名前<input type="text" name="user_name">
+            <br>
+            メールアドレス<input type="email" name="email">
+            <br>
+            <input type="submit" name="conf" value="確認">
+        <?php endif; ?>
+
+        <?php if($pageFlag === 1) : ?>
+        <p>以下の内容でよろしいですか？</p>
+        <form method="POST" action="index.php">
+            <input type="submit" name="back" value="戻る">
+        <br>
+        <input type="submit" name="submit" value="送信">
+        <br>
+        <input type="hidden" name="user_name" value="<?php echo $_POST['user_name']; ?>">
+        <br>
+        <input type="hidden" name="email" value="<?php echo $_POST['email']; ?>">
+        <?php endif; ?>
+        <?php if($pageFlag === 2) : ?>
+        <p>送信が完了しました</p>
+        <?php endif; ?>
+        </body>
+    </html>
+</DOCTYPE>
