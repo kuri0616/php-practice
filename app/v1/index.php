@@ -2,7 +2,9 @@
 namespace api;
 
 require 'HelloApiService.php';
-
+echo '<pre>';
+var_dump($_SERVER['REQUEST_URI']);
+echo '</pre>';
 $helloApiService = new HelloApiService();
 
 list($statusCode, $res) = $helloApiService->getHelloMessage();
