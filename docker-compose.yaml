@@ -1,8 +1,10 @@
 version: '3.8'
 services:
   php:
-    image: php:8.2-apache
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "8080:80"
     volumes:
-      - ./app/api:/var/www/html
+      - ./app/v1:/var/www/html
