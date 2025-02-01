@@ -1,0 +1,25 @@
+# Composer dependencies
+/vendor/
+# PHPUnit result cache
+.phpunit.result.cache
+
+# PHPStorm project files
+.idea/
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Cache directories
+cache/
+tmp/
+
+# Environment variables
+.env
+
+# User-specific files
+*.swp
+*.swo

@@ -8,3 +8,4 @@ services:
       - "8080:80"
     volumes:
       - ./app/v1:/var/www/html
+    command: bash -c "composer install && apache2-foreground"
