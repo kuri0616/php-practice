@@ -3,20 +3,34 @@ namespace FizzBuzz\Core;
 
 class NumberConverter
 {
+    public function __construct(
+        protected  array $rules
+){}
     public function convert(int $number): string
     {
-        if ($number % 3 === 0 && $number % 5 === 0) {
-            return 'FizzBuzz';
+        if (empty($this->rules)) {
+            return '';
         }
 
-        if ($number % 3 === 0) {
-            return 'Fizz';
+        $result = "";
+        foreach ($this->rules as $rule) {
+            $result .= $rule->replace($number);
         }
+        return $result;
 
-        if ($number % 5 === 0) {
-            return 'Buzz';
-        }
-
-        return (string) $number;
+//
+//        if ($number % 3 === 0 && $number % 5 === 0) {
+//            return 'FizzBuzz';
+//        }
+//
+//        if ($number % 3 === 0) {
+//            return 'Fizz';
+//        }
+//
+//        if ($number % 5 === 0) {
+//            return 'Buzz';
+//        }
+//
+//        return (string) $number;
     }
 }
