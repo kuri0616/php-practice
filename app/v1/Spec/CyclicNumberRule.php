@@ -2,6 +2,8 @@
 
 namespace FizzBuzz\Spec;
 
+require_once __DIR__ . '/../Core/ReplaceRuleInterface.php';
+
 use FizzBuzz\Core\ReplaceRuleInterface;
 
 class CyclicNumberRule implements ReplaceRuleInterface

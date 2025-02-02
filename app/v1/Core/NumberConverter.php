@@ -12,10 +12,10 @@
         
         public function convert(int $number): string
         {
-            $carry = "";
+            $carry = '';
             foreach ($this->rules as $rule) {
                 if ($rule->match($carry, $number)) {
-                    $carry .= $rule->apply($carry, $number);
+                    $carry = $rule->apply($carry, $number);
                 }
             }
             return $carry;
