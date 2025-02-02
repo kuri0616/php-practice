@@ -1,36 +1,23 @@
 <?php
-namespace FizzBuzz\Core;
-
-class NumberConverter
-{
-    public function __construct(
-        protected  array $rules
-){}
-    public function convert(int $number): string
+    
+    namespace FizzBuzz\Core;
+    
+    class NumberConverter
     {
-        if (empty($this->rules)) {
-            return '';
+        public function __construct(
+            protected array $rules
+        )
+        {
         }
-
-        $result = "";
-        foreach ($this->rules as $rule) {
-            $result .= $rule->replace($number);
+        
+        public function convert(int $number): string
+        {
+            $carry = "";
+            foreach ($this->rules as $rule) {
+                if ($rule->match($carry, $number)) {
+                    $carry .= $rule->apply($carry, $number);
+                }
+            }
+            return $carry;
         }
-        return $result;
-
-//
-//        if ($number % 3 === 0 && $number % 5 === 0) {
-//            return 'FizzBuzz';
-//        }
-//
-//        if ($number % 3 === 0) {
-//            return 'Fizz';
-//        }
-//
-//        if ($number % 5 === 0) {
-//            return 'Buzz';
-//        }
-//
-//        return (string) $number;
     }
-}
